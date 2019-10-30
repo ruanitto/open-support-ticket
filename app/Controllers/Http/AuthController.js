@@ -1,11 +1,20 @@
 'use strict'
-const User = use('App/Model/User')
+/** @typedef {import('@adonisjs/framework/src/Request')} Request */
+/** @typedef {import('@adonisjs/framework/src/Response')} Response */
+/** @typedef {import('@adonisjs/framework/src/View')} View */
+/** @typedef {import('@adonisjs/auth/src/Schemes/Session')} AuthSession */
+const User = use('App/Models/User')
 const Validator = use('Validator')
 
 class AuthController {
-
+    /**
+     * @param {object} ctx
+     * @param {Request} ctx.request
+     * @param {Response} ctx.response
+     * @param {View} ctx.view
+     */
     async showRegisterPage({ request, response, view }) {
-        return response.sendView('auth.register')
+        return view.render('auth.register')
     }
 
     async register({ request, response, view }) {
