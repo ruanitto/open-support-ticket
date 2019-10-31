@@ -17,6 +17,15 @@
 const Route = use('Route')
 
 Route.get('/', 'HomeController.index')
+//Route.on('/').render('home')
 
 Route.get('register', 'AuthController.showRegisterPage')
 Route.post('register', 'AuthController.register')
+
+Route.get('login', 'AuthController.showLoginPage')
+Route.post('login', 'AuthController.login')
+
+Route.get('logout', 'AuthController.logout')
+
+Route.get('new_ticket', 'TicketsController.create')
+Route.post('new_ticket', 'TicketsController.store')

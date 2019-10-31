@@ -1,0 +1,11 @@
+<!-- resources/views/includes/errors.edge -->
+
+@if(flashMessage('errors'))
+    <div class="alert alert-danger">
+        <ul>
+            @each(error in flashMessage('errors'))
+                <li>{{ error.message }}</li>
+            @endeach
+        </ul>
+    </div>
+@endif

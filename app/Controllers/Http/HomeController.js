@@ -13,7 +13,7 @@ class HomeController {
     async index({ view }) {
         const appName = Config.get('app.name')
 
-        return view.render('layouts.master', { title: appName })
+        return view.render('home', { appName })
     }
 }
 

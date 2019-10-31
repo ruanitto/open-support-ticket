@@ -1,0 +1,56 @@
+@layout('layouts.master')
+
+@section('content')
+    @set('title', 'New Ticket')
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">Open New Ticket</div>
+
+                <div class="panel-body">
+                    @include('includes.status')
+                    @include('includes.errors')
+
+                    <form class="form-horizontal" action="/new_ticket" method="POST">
+                    {{ csrfField() }}
+
+                    <div class="form-group">
+                        @!component('components.label', { text: 'Title', related: 'title', css_class: 'col-md-4 control-label' })
+                        <div class="col-md-6">
+                            @!component('components.input', { name: 'title', value: old('title'), required: true, css_class: 'form-control' })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @!component('components.label', { text: 'Category', related: 'category', css_class: 'col-md-4 control-label' })
+                        <div class="col-md-6">
+                            @!component('components.select', { name: 'category', values: categories, first: 'Select Category', required: true, css_class: 'form-control' })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @!component('components.label', { text: 'Priority', related: 'priority', css_class: 'col-md-4 control-label' })
+                        <div class="col-md-6">
+                            @!component('components.select', { name: 'priority', values: priorityes, first: 'Select Priority', required: true, css_class: 'form-control' })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @!component('components.label', { text: 'Message', related: 'message', css_class: 'col-md-4 control-label' })
+                        <div class="col-md-6">
+                            @!component('components.textarea', { name: 'message', value: old('message'), rows: 10, required: true, css_class: 'form-control' })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-4">
+                            <button class="btn btn-primary">
+                                Open Ticket
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

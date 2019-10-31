@@ -1,13 +1,13 @@
 <!-- resources/views/layouts/master.edge -->
-
 <!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <title>{{ title }}</title>
+    {{-- Title --}}
+    <title>{{ appName }} - {{ title }}</title>
+    
 
     <link rel="icon" href="/assets/favicon.png" type="image/x-icon">
 
@@ -23,16 +23,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">{{ title }}</a>
+          <a class="navbar-brand" href="/">{{ appName }}</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            @if(currentUser)
+            @if(auth.user)
             {{--  {% ifAsync currentUser %}  --}}
               <li><a href="/new_ticket">Open Ticket</a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ currentUser.username }} <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ auth.user.username }} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="/my_tickets">My Tickets</a></li>
                   <li role="separator" class="divider"></li>
@@ -51,7 +51,7 @@
     </nav>
 
     <div class="container">
-        @!section('container')
+        @!section('content')
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

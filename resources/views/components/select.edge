@@ -1,0 +1,14 @@
+<select {{ required ? 'required' : null }}
+    name="{{ name }}" 
+    id="{{ name }}" 
+    class="{{ css_class }}"
+    @if(action)
+        onchange="{{ action }}">
+    @endif
+    @if(first)
+        <option value="">{{ first }}</option>
+    @endif
+    @each(v in values)
+        <option value="{{ v.value }}" {{ v.selected == true ? 'selected' : '' }}>{{ v.label }}</option>
+    @endeach
+</select>

@@ -1,0 +1,47 @@
+@layout('layouts.master')
+
+@section('content')
+    @set('title', 'Login')
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Login</div>
+                    <div class="panel-body">
+
+                        @if(old('error'))
+                            <div class="alert alert-danger">
+                                {{ old('error') }}
+                            </div>
+                        @endif
+
+                        <form class="form-horizontal" action="/login" method="POST">
+                            {{ csrfField() }}
+
+                        <div class="form-group">
+                            @!component('components.label', { text: 'Email', related: 'email', css_class: 'col-md-4 control-label' })
+                            <div class="col-md-6">
+                                @!component('components.input', { name: 'email', value: old('email'), required: true, css_class: 'form-control' })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @!component('components.label', { text: 'Password', related: 'password', css_class: 'col-md-4 control-label' })
+                            <div class="col-md-6">
+                                @!component('components.input', { name: 'password', value: old('password'), type: 'password', required: true, css_class: 'form-control' })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button class="btn btn-primary">
+                                    Login
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
