@@ -5,9 +5,9 @@ const Model = use('Model')
 
 class Category extends Model {
 
-    tickets () {
-        return this.hasMany('App/Models/Ticket')
-    }
+  tickets() {
+    return this.hasMany('App/Models/Ticket')
+  }
 }
 
 module.exports = Category

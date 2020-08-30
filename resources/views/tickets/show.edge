@@ -1,0 +1,48 @@
+@layout('layouts.master')
+
+@section('content')
+    @set('title', ticket.title)
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                  #{{ ticket.ticket_id }} - {{ ticket.title }}
+              </div>
+
+              <div class="panel-body">
+                @include('includes.status')
+                @include('includes.errors')
+
+                  <div class="ticket-info">
+                      <p>{{ ticket.message }}</p>
+                      <p>Categry: {{ category.name }}</p>
+                      <p>
+                          @if(ticket.status == 'Open')
+                              Status: <span class="label label-success">{{ ticket.status }}</span>
+                          @else
+                              Status: <span class="label label-danger">{{ ticket.status }}</span>
+                          @endif
+                      </p>
+                      <p>Created on: {{ ticket.created_at }}</p>
+                  </div>
+
+                  <hr>
+                  <div class="comment-form">
+                    <form class="form-horizontal" action="/comment" method="POST">
+                        {{ csrfField() }}
+
+                        @!component('components.input', { name: 'ticket_id', value: ticket.id, type: 'hidden', required: false, css_class: 'form-control' })
+
+                        @!component('components.textarea', { name: 'comment', value: old('comment'), rows: 10, required: true, css_class: 'form-control' })
+
+                        <br/>
+                        <button class="btn btn-primary">
+                          Submit
+                        </button>
+                    </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+@endsection

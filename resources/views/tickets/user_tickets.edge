@@ -1,0 +1,53 @@
+@layout('layouts.master')
+
+@section('content')
+  @set('title', 'My Tickets')
+  <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                  My Tickets</i>
+              </div>
+
+              <div class="panel-body">
+                  @if(tickets.length == 0)
+                      <p>You have not created any tickets.</p>
+                  @else
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th>Category</th>
+                              <th>Title</th>
+                              <th>Status</th>
+                              <th>Last Updated</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          @each(ticket in tickets)
+                          <tr>
+                              <td>
+                                {{ ticket.category.id }} - {{ ticket.category.name }}
+                              </td>
+                              <td>
+                                  <a href="tickets/{{ ticket.ticket_id }}">
+                                      #{{ ticket.ticket_id }} - {{ ticket.title }}
+                                  </a>
+                              </td>
+                              <td>
+                                  @if(ticket.status == 'Open')
+                                      <span class="label label-success">{{ ticket.status }}</span>
+                                  @else
+                                      <span class="label label-danger">{{ ticket.status }}</span>
+                                  @endif
+                              </td>
+                              <td>{{ ticket.updated_at }}</td>
+                          </tr>
+                          @endeach
+                      </tbody>
+                  </table>
+                  @endif
+              </div>
+          </div>
+      </div>
+  </div>
+@endsection
